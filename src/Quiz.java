@@ -129,19 +129,18 @@ public class Quiz {
                 // tie checker
                 if (isTie(cList, index)) {
                         System.out.println("\nIt's a tie! Answer this question to see your result...\n");
-                        
+
                         int maxPoints = cList[index].points;
                         Category[] tiedCharacters = new Category[cList.length];
                         int tiedCount = 0;
-                        
+
                         for (int i = 0; i < cList.length; i++) {
                                 if (cList[i].points == maxPoints) {
                                         tiedCharacters[tiedCount] = cList[i];
                                         tiedCount++;
                                 }
                         }
-                        
-                        // Ask tiebreaker with only tied character options
+
                         Category c = askTiebreaker(tiedCharacters, tiedCount, sc);
                         c.points++;
                         index = getMostPopularCatIndex(cList);
@@ -189,12 +188,12 @@ public class Quiz {
                 }
                 return tieCount > 1;
         }
-        
-        // asks tiebreaker question with only tied character options
+
+        // this asks the tiebreaker so that only the tied characters show up
         public static Category askTiebreaker(Category[] tiedCharacters, int tiedCount, Scanner sc) {
-                System.out.println("Someone you're working with completely messes up something important. What do you do?");
-                
-                // Create answer options for only the tied characters
+                System.out.println(
+                                "Someone you're working with completely messes up something important. What do you do?");
+
                 String[] answers = new String[tiedCount];
                 for (int i = 0; i < tiedCount; i++) {
                         if (tiedCharacters[i].label.equals("Walter White")) {
@@ -207,12 +206,11 @@ public class Quiz {
                                 answers[i] = "Stay calm, make a new plan, and quickly get everyone back on track";
                         }
                 }
-                
-                // Display only the tied character options
+
                 for (int i = 0; i < tiedCount; i++) {
                         System.out.println("[" + (i + 1) + "]: " + answers[i]);
                 }
-                
+
                 int choice = sc.nextInt();
                 return tiedCharacters[choice - 1];
         }
