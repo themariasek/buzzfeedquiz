@@ -60,7 +60,7 @@ public class Quiz {
                 q4.possibleAnswers[3] = new Answer("The soft, multicolored bands of twilight", jesse);
 
                 Question q5 = new Question(
-                                "Which natural light source do you most resonate with? This can mean whatever you want it to mean, just pick what feels right.");
+                                "What kind of weather appeals to you the most?");
                 q5.possibleAnswers[0] = new Answer(
                                 "A sunny, warm day with blue skies and no/minimal clouds, perfect for going outside",
                                 hank);
@@ -211,7 +211,19 @@ public class Quiz {
                         System.out.println("[" + (i + 1) + "]: " + answers[i]);
                 }
 
-                int choice = sc.nextInt();
-                return tiedCharacters[choice - 1];
+                while (true) {
+                        if (!sc.hasNextInt()) {
+                                sc.next();
+                                System.out.println("That's not an answer, silly. Please enter a number between 1 and " + tiedCount + ".");
+                                continue;
+                        }
+
+                        int choice = sc.nextInt();
+                        if (choice >= 1 && choice <= tiedCount) {
+                                return tiedCharacters[choice - 1];
+                        }
+
+                        System.out.println("That's not an answer, silly. Please enter a number between 1 and " + tiedCount + ".");
+                }
         }
 }

@@ -15,14 +15,25 @@ public class Question {
     // ask a question, and return the category that corresponds to the answer
     Category ask(Scanner sc) {
         System.out.println(this.label);
-        // prints out all the answer choices
         for (int i = 0; i < this.possibleAnswers.length; i++) {
             String choice = Integer.toString(i + 1);
-            System.out.println("[" + choice + "]:" +
-                    this.possibleAnswers[i].label);
+            System.out.println("[" + choice + "]:" + this.possibleAnswers[i].label);
         }
-        int ans = sc.nextInt();
-        return possibleAnswers[ans - 1].cat;
+
+        while (true) {
+            if (!sc.hasNextInt()) {
+                sc.next();
+                System.out.println("That's not an answer, silly. Please enter a number between 1 and 4.");
+                continue;
+            }
+
+            int ans = sc.nextInt();
+            if (ans >= 1 && ans <= this.possibleAnswers.length && this.possibleAnswers[ans - 1] != null) {
+                return this.possibleAnswers[ans - 1].cat;
+            }
+
+            System.out.println("That's not an answer, silly. Please enter a number between 1 and 4.");
+        }
     }
 
 }
