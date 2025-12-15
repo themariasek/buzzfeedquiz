@@ -126,7 +126,7 @@ public class Quiz {
                 // these need to be in the same order or the points will be incorrect!
                 int index = getMostPopularCatIndex(cList);
 
-                // tie checker
+                // tie method
                 if (isTie(cList, index)) {
                         System.out.println("\nIt's a tie! Answer this question to see your result...\n");
 
@@ -177,7 +177,7 @@ public class Quiz {
                 return maxIndex;
         }
 
-        // the tie method
+        // tie checker
         public static boolean isTie(Category[] counts, int maxIndex) {
                 int maxCount = counts[maxIndex].points;
                 int tieCount = 0;
